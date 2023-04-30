@@ -30,13 +30,14 @@ namespace _Source.GenerationLevel
                     _parts[type].Remove(part);
                     return part;
                 }
-                var newPart =CreatorPartsLevel.CreatePart(_parts[type][Random.Range(0, _countBaseParts)].GetObject).GetComponent<APartLevel>();
+                var newPart =CreatorPartsLevel.CreatePart(_parts[type][Random.Range(0, _parts[type].Count)].GetObject).GetComponent<APartLevel>();
                 newPart.SetParameters(this,_speedMovingPart);
                 return newPart;
             }
-            catch
+            catch(Exception e)
             {
-                return null;
+                Console.WriteLine(e);
+                throw;
             }
         }
 

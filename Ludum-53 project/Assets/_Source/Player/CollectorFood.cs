@@ -8,6 +8,7 @@ namespace _Source.Player
     public class CollectorFood : MonoBehaviour
     {
         [SerializeField] private LayerMask layerFood;
+        [SerializeField] private LayerMask layerObstacle;
         private int _currentCountFood;
         private int _currentTargetFood;
 
@@ -32,12 +33,24 @@ namespace _Source.Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if ((layerFood.value & (1 << other.gameObject.layer)) > 0)
+            var obj = other.gameObject;
+            if ((layerFood.value & (1 << obj.layer)) > 0)
             {
                 _currentCountFood++;
-                other.gameObject.SetActive(false);
-                UpdateUI();
+                obj.SetActive(false);
             }
+
+            if ((layerObstacle.value & (1 << obj.layer)) > 0)
+            {
+                var minus = obj.GetComponent<ObstacleComponent>().GetPrice;
+                if (minus >= _currentCountFood)
+                {
+                    Signals.Get<OnDead>().Dispatch();
+                }
+                else
+                    _currentCountFood -= minus;
+            }
+            UpdateUI();
         }
     }
 }

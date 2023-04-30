@@ -15,6 +15,11 @@ namespace _Source.Score
             Signals.Get<OnGetFood>().AddListener(UpdateTextFood);
         }
 
+        public void UpdateTextScore(int distance)
+        {
+            textScore.text = $"Distance = {distance}";
+        }
+
         private void UpdateTextFood(string score)
         {
             textFood.text = score;

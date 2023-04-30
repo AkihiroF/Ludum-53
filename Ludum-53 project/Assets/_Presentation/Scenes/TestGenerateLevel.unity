@@ -160,6 +160,9 @@ MonoBehaviour:
   layerGround:
     serializedVersion: 2
     m_Bits: 64
+  layerInteractable:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!70 &93410326
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -257,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93410324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.41, y: -2, z: 0}
+  m_LocalPosition: {x: -2.45, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -427,7 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerInteractable:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
 --- !u!61 &470953208
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -573,8 +576,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsLvl:
   - {fileID: 2936815578513492900, guid: 34cfff40b75cc4e34a164a6f4006eb75, type: 3}
+  - {fileID: 2936815578513492900, guid: 16c9694a2095440d993e6c81275ade74, type: 3}
+  emptyPointObject: {fileID: 116997082885622161, guid: 47c1ae85a46594082a6ce1ecc893e509, type: 3}
   checkPointObject: {fileID: 5034342473992526206, guid: 81b8d1988532447338e5c0f331aa4bb1, type: 3}
-  startLenght: 4
+  startLenght: 3
+  countAdditionalParts: 2
   speedMoving: 4
 --- !u!4 &1322034438
 Transform:

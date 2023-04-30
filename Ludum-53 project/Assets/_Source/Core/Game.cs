@@ -23,14 +23,12 @@ namespace _Source.Core
         {
             var inp = _input.Player;
             inp.Jump.performed += _inputHandler.ActionJump;
-            inp.RollingDown.performed += _inputHandler.ActionRolling;
         }
 
         private void UnBind()
         {
             var inp = _input.Player;
             inp.Jump.performed -= _inputHandler.ActionJump;
-            inp.RollingDown.performed -= _inputHandler.ActionRolling;
         }
 
         private void EnableInput() 

@@ -16,10 +16,5 @@ namespace _Source.Input
         {
             _player.Jump();
         }
-
-        public void ActionRolling(InputAction.CallbackContext obj)
-        {
-            _player.RollingDown();
-        }
     }
 }

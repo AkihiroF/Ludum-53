@@ -1,3 +1,4 @@
+using _Source.GenerationLevel.PartsLevel;
 using UnityEngine;
 
 namespace _Source.Player
@@ -8,8 +9,19 @@ namespace _Source.Player
         [SerializeField] private LayerMask layerGround;
         private Rigidbody2D _rb;
         private Vector2 _sizePlayer;
+         [SerializeField] private LayerMask layerInteractable;
 
-        private void Start()
+         private void OnCollisionEnter2D(Collision2D other)
+         {
+             var obj = other.gameObject;
+             if ((layerInteractable.value & (1 << obj.layer)) > 0)
+             {
+                 var part = obj.GetComponent<CheckPartLevel>();
+                 part.PlayerEnter();
+             }
+         }
+
+         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             _sizePlayer = GetComponent<CapsuleCollider2D>().size;
@@ -22,11 +34,6 @@ namespace _Source.Player
                 Debug.Log("Jump");
                 _rb.AddForce(Vector2.up * powerForce * 100);
             }
-        }
-
-        public void RollingDown()
-        {
-            
         }
 
         private bool CheckIsGrounded()

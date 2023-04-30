@@ -11,6 +11,7 @@ namespace _Source.GenerationLevel
         [SerializeField] private APartLevel emptyPointObject;
         [SerializeField] private APartLevel checkPointObject;
         [SerializeField] private int startLenght;
+        [SerializeField] private int countAdditionalParts;
 
         [SerializeField] private float speedMoving;
 
@@ -27,29 +28,25 @@ namespace _Source.GenerationLevel
                 _pool.AddToPool(typeof(BasePartLevel), part);
             }
             _pool.AddToPool(typeof(CheckPartLevel), checkPointObject);
+            _pool.AddToPool(typeof(EmptyPartLvl), emptyPointObject);
             GenerateStartLocation();
-            Signals.Get<OnUnvisible>().AddListener(GenerateNewLevel);
+            Signals.Get<OnGenerateNextLevel>().AddListener(GenerateNewLevel);
         }
 
         private void GenerateStartLocation()
         {
-            var countFoodInLvl = 0;
             for (int i = 0; i < startLenght; i++)
             {
-                var part = _pool.GetPartLevel(typeof(BasePartLevel));
+                var part = _pool.GetPartLevel(typeof(EmptyPartLvl));
                 part.transform.position = _positionSpawn;
                 _positionSpawn += part.GetDistance;
-                var currentPart = (BasePartLevel)part;
-                countFoodInLvl += currentPart.GetCountFood;
             }
-
             var checkPart = _pool.GetPartLevel(typeof(CheckPartLevel));
             checkPart.transform.position = _positionSpawn;
             _lastPart = checkPart;
-            _currentLenghtLevel = startLenght;
-            Signals.Get<OnUpdateTargetScore>().Dispatch(countFoodInLvl);
+            GenerateEmptyParts();
+            _currentLenghtLevel = startLenght + 1;
             IncreaseRandomly();
-            GenerateNewLevel();
         }
 
         private void GenerateNewLevel()
@@ -67,8 +64,24 @@ namespace _Source.GenerationLevel
             var checkPart = _pool.GetPartLevel(typeof(CheckPartLevel));
             checkPart.transform.position = _positionSpawn;
             _lastPart = checkPart;
+            GenerateEmptyParts();
             Signals.Get<OnUpdateTargetScore>().Dispatch(countFoodInLvl);
             IncreaseRandomly();
+        }
+
+        private void GenerateEmptyParts()
+        {
+            _positionSpawn = (Vector2)_lastPart.transform.position + _lastPart.GetDistance/2 + emptyPointObject.GetDistance/2;
+            for (int i = 0; i < countAdditionalParts; i++)
+            {
+                var part = _pool.GetPartLevel(typeof(EmptyPartLvl));
+                part.transform.position = _positionSpawn;
+                _positionSpawn += part.GetDistance;
+                if (i == countAdditionalParts - 1)
+                {
+                    _lastPart = part;
+                }
+            }
         }
         private void IncreaseRandomly()
         {

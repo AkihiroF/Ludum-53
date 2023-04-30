@@ -1,6 +1,6 @@
 namespace _Source.EventSystem
 {
-    public class OnUnvisible : ASignal
+    public class OnGenerateNextLevel : ASignal
     {
         
     }

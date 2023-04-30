@@ -14,7 +14,7 @@ namespace _Source.GenerationLevel.PartsLevel
                 return foodsInPart.Count;
             }
         }
-        public override void PlayerExit()
+        public override void Unvisible()
         {
             foreach (var food in foodsInPart)
             {
