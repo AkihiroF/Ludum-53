@@ -7,7 +7,7 @@ namespace _Source.GenerationLevel.PartsLevel
         public override void PlayerExit()
         {
             ReturnToPool();
-            Signals.Get<FinishCheck>().Dispatch();
+            Signals.Get<OnUnvisible>().Dispatch();
         }
 
         protected override void ReturnToPool()
