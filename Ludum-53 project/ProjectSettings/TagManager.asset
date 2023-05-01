@@ -11,11 +11,11 @@ TagManager:
   - PartLevel
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Food
+  - Obstacle
+  - CheckPoint
   - 
   - 
   - 
