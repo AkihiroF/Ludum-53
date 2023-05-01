@@ -1,16 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Source
+namespace _Source.UI
 {
     public class UiMainMenuPreviewer : MonoBehaviour
     {
         [SerializeField] private SceneLoader sceneLoader;
-        [SerializeField] private Button loadGameButton;
-        [SerializeField] private Button startNewGameButton;
+        [SerializeField] private Button startGameButton;
+        [SerializeField] private Button showResultButton;
         [SerializeField] private Button quitButton;
-
-        private bool _isLoad;
 
         private void Awake()
         {
@@ -19,8 +17,8 @@ namespace _Source
 
         private void BindButtons()
         {
-            loadGameButton.onClick.AddListener(() => sceneLoader.LoadGame());
-            startNewGameButton.onClick.AddListener(() => sceneLoader.LoadNewGame());
+            startGameButton.onClick.AddListener(() => sceneLoader.LoadGame());
+            //showResultButton.onClick.AddListener(() => sceneLoader.LoadNewGame());
             quitButton.onClick.AddListener(() => sceneLoader.QuitGame());
         }
         
