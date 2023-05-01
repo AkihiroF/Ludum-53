@@ -31,7 +31,7 @@ namespace _Source.Player
             Signals.Get<OnGetFood>().Dispatch(info);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             var obj = other.gameObject;
             if ((layerFood.value & (1 << obj.layer)) > 0)
@@ -45,12 +45,17 @@ namespace _Source.Player
                 var minus = obj.GetComponent<ObstacleComponent>().GetPrice;
                 if (minus >= _currentCountFood)
                 {
-                    Signals.Get<OnDead>().Dispatch();
+                    Signals.Get<OnPlayAnimationDead>().Dispatch();
                 }
                 else
                     _currentCountFood -= minus;
             }
             UpdateUI();
+        }
+
+        private void OnDestroy()
+        {
+            Signals.Get<OnUpdateTargetScore>().RemoveListener(UpdateTarget);
         }
     }
 }
