@@ -6,7 +6,15 @@ namespace _Source.GenerationLevel.PartsLevel
     public class BasePartLevel : APartLevel
     {
         [SerializeField] private List<GameObject> foodsInPart;
-        public override void PlayerExit()
+
+        public int GetCountFood
+        {
+            get
+            {
+                return foodsInPart.Count;
+            }
+        }
+        public override void Unvisible()
         {
             foreach (var food in foodsInPart)
             {

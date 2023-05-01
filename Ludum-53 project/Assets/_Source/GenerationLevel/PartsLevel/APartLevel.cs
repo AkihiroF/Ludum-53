@@ -30,9 +30,10 @@ namespace _Source.GenerationLevel.PartsLevel
 
         private void FixedUpdate()
         {
-            var transform1 = _transformPrefab;
-            var nextPos = transform1.position - Vector3.right * _speed;
-            transform1.position = Vector3.Lerp(transform1.position,nextPos , Time.deltaTime);
+            var position = _transformPrefab.position;
+            var nextPos = position - Vector3.right * _speed;
+            position = Vector3.Lerp(position,nextPos , Time.deltaTime);
+            _transformPrefab.position = position;
         }
 
         public void SetParameters(PoolPartsLevel pool, float speedMoving)
@@ -41,7 +42,7 @@ namespace _Source.GenerationLevel.PartsLevel
             _speed = speedMoving;
             _transformPrefab = prefabPart.transform;
         }
-        public abstract void PlayerExit();
+        public abstract void Unvisible();
 
         protected abstract void ReturnToPool();
     }

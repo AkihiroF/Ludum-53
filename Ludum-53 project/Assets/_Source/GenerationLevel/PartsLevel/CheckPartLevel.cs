@@ -4,10 +4,13 @@ namespace _Source.GenerationLevel.PartsLevel
 {
     public class CheckPartLevel : APartLevel
     {
-        public override void PlayerExit()
+        public void PlayerEnter()
+        {
+            Signals.Get<OnGenerateNextLevel>().Dispatch();
+        }
+        public override void Unvisible()
         {
             ReturnToPool();
-            Signals.Get<FinishCheck>().Dispatch();
         }
 
         protected override void ReturnToPool()

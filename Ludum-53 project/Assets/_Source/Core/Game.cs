@@ -8,6 +8,7 @@ namespace _Source.Core
         {
             _input = input;
             _inputHandler = inputHandler;
+            Bind();
         }
 
         private PlayerInput _input;
@@ -15,27 +16,40 @@ namespace _Source.Core
 
         public void StartGame()
         {
-            
+            EnableInput();
         }
 
         private void Bind()
         {
-            
+            var inp = _input.Player;
+            inp.Jump.performed += _inputHandler.ActionJump;
         }
+
+        private void UnBind()
+        {
+            var inp = _input.Player;
+            inp.Jump.performed -= _inputHandler.ActionJump;
+        }
+
+        private void EnableInput() 
+            => _input.Player.Enable();
+
+        private void DisableInput()
+            => _input.Player.Disable();
 
         public void ResumeGame()
         {
-            
+            EnableInput();
         }
 
         public void PauseGame()
         {
-            
+            DisableInput();
         }
 
         public void ExitGame()
         {
-            
+            UnBind();
         }
     }
 }
