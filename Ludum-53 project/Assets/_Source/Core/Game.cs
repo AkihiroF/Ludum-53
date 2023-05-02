@@ -66,6 +66,7 @@ namespace _Source.Core
             Signals.Get<OnResume>().AddListener(ResumeGame);
             Signals.Get<OnDead>().AddListener(PauseGame);
             Signals.Get<OnDead>().AddListener(DisableInput);
+            Signals.Get<OnPlayAnimationDead>().AddListener(DisableInput);
         }
         
         private void UnSubscribe()
@@ -74,6 +75,7 @@ namespace _Source.Core
             Signals.Get<OnResume>().RemoveListener(ResumeGame);
             Signals.Get<OnDead>().RemoveListener(PauseGame);
             Signals.Get<OnDead>().RemoveListener(DisableInput);
+            Signals.Get<OnPlayAnimationDead>().RemoveListener(DisableInput);
         }
         private void EnableInput() 
             => _input.Player.Enable();

@@ -399,7 +399,7 @@ SpriteRenderer:
   m_SortingLayerID: 1263564321
   m_SortingLayer: 1
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 2127234626, guid: f683f5ab540a4824aaa8979902a5296b, type: 3}
+  m_Sprite: {fileID: 1887140949, guid: b7ae9b21fa52b124d990e189f2f5c9f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -464,9 +464,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &186254551
 CapsuleCollider2D:
@@ -1101,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 444325868372351730, guid: 1bee69dd79df148c1affea44e1a66a54, type: 3}
     - target: {fileID: 4087720941628305080, guid: 5c6231eb054994abab8abc7f525dd1b3, type: 3}
       propertyPath: partsLvl.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4087720941628305080, guid: 5c6231eb054994abab8abc7f525dd1b3, type: 3}
       propertyPath: countAdditionalParts
@@ -1111,6 +1111,10 @@ PrefabInstance:
       propertyPath: partsLvl.Array.data[0]
       value: 
       objectReference: {fileID: 7678758092912097654, guid: b7c705840e0d63a4fadf72c0e9a6841c, type: 3}
+    - target: {fileID: 4087720941628305080, guid: 5c6231eb054994abab8abc7f525dd1b3, type: 3}
+      propertyPath: partsLvl.Array.data[1]
+      value: 
+      objectReference: {fileID: 5597112083267042423, guid: d1dc3821ed35f488280c07e721196a92, type: 3}
     - target: {fileID: 4087720941628305081, guid: 5c6231eb054994abab8abc7f525dd1b3, type: 3}
       propertyPath: m_Name
       value: GeneratorLevel
@@ -2359,7 +2363,7 @@ GameObject:
   - component: {fileID: 2085118742}
   - component: {fileID: 2085118741}
   m_Layer: 0
-  m_Name: "PINK_BITCH_CLUB\uFF5CTW_flash_glitch_\u2014_vavinos_www_lightaudio_ru"
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2375,7 +2379,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6443e4c65fcec4ef8bb3bfd857a3fc01, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 37d530326d1f74c19a7aed65f92461e9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
