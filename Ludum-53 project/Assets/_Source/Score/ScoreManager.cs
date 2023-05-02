@@ -24,5 +24,10 @@ namespace _Source.Score
         {
             textFood.text = score;
         }
+
+        private void OnDestroy()
+        {
+            Signals.Get<OnGetFood>().RemoveListener(UpdateTextFood);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using _Source.EventSystem;
 using UnityEngine;
 
 namespace _Source.GenerationLevel.PartsLevel
@@ -10,6 +11,7 @@ namespace _Source.GenerationLevel.PartsLevel
         private float _speed;
         
         private Transform _transformPrefab;
+        private bool _isDead;
         protected PoolPartsLevel _poolParts;
         
         public Vector2 GetDistance
@@ -26,10 +28,12 @@ namespace _Source.GenerationLevel.PartsLevel
                 return prefabPart;
             }
         }
-
+        
 
         private void FixedUpdate()
         {
+            if(_isDead)
+                return;
             var position = _transformPrefab.position;
             var nextPos = position - Vector3.right * _speed;
             position = Vector3.Lerp(position,nextPos , Time.deltaTime);
@@ -41,9 +45,20 @@ namespace _Source.GenerationLevel.PartsLevel
             _poolParts = pool;
             _speed = speedMoving;
             _transformPrefab = prefabPart.transform;
+            Signals.Get<OnPlayAnimationDead>().AddListener(StopMoving);
+        }
+
+        private void StopMoving()
+        {
+            _isDead = true;
         }
         public abstract void Unvisible();
 
         protected abstract void ReturnToPool();
+
+        private void OnDestroy()
+        {
+            Signals.Get<OnPlayAnimationDead>().RemoveListener(StopMoving);
+        }
     }
 }

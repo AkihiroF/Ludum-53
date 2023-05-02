@@ -10,7 +10,6 @@ namespace _Source.UI
         [Space]
         [SerializeField] private GameObject deadPanel;
         [SerializeField] private Button restartButton;
-        [SerializeField] private Button menuButton;
         [Space] 
         [SerializeField] private GameObject pausedPanel;
 
@@ -33,12 +32,6 @@ namespace _Source.UI
                 UnSubscribe();
                 sceneLoader.LoadGame();
             }));
-            menuButton.onClick.AddListener(() =>
-            {
-                UnBindButtons();
-                UnSubscribe();
-                sceneLoader.LoadMainMenu();
-            });
             resumeButton.onClick.AddListener(() =>
             {
                 Signals.Get<OnResume>().Dispatch();
@@ -54,7 +47,6 @@ namespace _Source.UI
         private void UnBindButtons()
         {
             restartButton.onClick.RemoveAllListeners();
-            menuButton.onClick.RemoveAllListeners();
             resumeButton.onClick.RemoveAllListeners();
             toMainMenuButton.onClick.RemoveAllListeners();
         }

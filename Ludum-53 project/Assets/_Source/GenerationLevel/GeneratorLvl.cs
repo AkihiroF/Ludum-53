@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using _Source.EventSystem;
 using _Source.GenerationLevel.PartsLevel;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Source.GenerationLevel
 {
@@ -52,16 +54,17 @@ namespace _Source.GenerationLevel
         private void GenerateNewLevel()
         {
             var countFoodInLvl = 0;
-            _positionSpawn = _lastPart.transform.position;
             for (int i = 0; i < _currentLenghtLevel; i++)
             {
                 var part = _pool.GetPartLevel(typeof(BasePartLevel));
+                _positionSpawn = (Vector2)_lastPart.transform.position + _lastPart.GetDistance/2 + part.GetDistance/2;
                 part.transform.position = _positionSpawn;
-                _positionSpawn += part.GetDistance;
                 var currentPart = (BasePartLevel)part;
                 countFoodInLvl += currentPart.GetCountFood;
+                _lastPart = part;
             }
             var checkPart = _pool.GetPartLevel(typeof(CheckPartLevel));
+            _positionSpawn = (Vector2)_lastPart.transform.position + _lastPart.GetDistance/2 + checkPart.GetDistance/2;
             checkPart.transform.position = _positionSpawn;
             _lastPart = checkPart;
             GenerateEmptyParts();
@@ -88,5 +91,9 @@ namespace _Source.GenerationLevel
             _currentLenghtLevel += Random.Range(2, 10);
         }
 
+        private void OnDestroy()
+        {
+            Signals.Get<OnGenerateNextLevel>().RemoveListener(GenerateNewLevel);
+        }
     }
 }

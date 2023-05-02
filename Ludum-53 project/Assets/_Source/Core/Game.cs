@@ -34,6 +34,7 @@ namespace _Source.Core
         {
             var inp = _input.Player;
             inp.Jump.performed -= _inputHandler.ActionJump;
+            inp.Pause.performed -= _inputHandler.ActionPause;
         }
 
 
@@ -64,12 +65,15 @@ namespace _Source.Core
             Signals.Get<OnPaused>().AddListener(PauseGame);
             Signals.Get<OnResume>().AddListener(ResumeGame);
             Signals.Get<OnDead>().AddListener(PauseGame);
+            Signals.Get<OnDead>().AddListener(DisableInput);
         }
         
         private void UnSubscribe()
         {
             Signals.Get<OnPaused>().RemoveListener(PauseGame);
             Signals.Get<OnResume>().RemoveListener(ResumeGame);
+            Signals.Get<OnDead>().RemoveListener(PauseGame);
+            Signals.Get<OnDead>().RemoveListener(DisableInput);
         }
         private void EnableInput() 
             => _input.Player.Enable();
