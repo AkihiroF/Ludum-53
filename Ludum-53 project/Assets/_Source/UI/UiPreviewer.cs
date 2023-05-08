@@ -1,4 +1,6 @@
 using _Source.EventSystem;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,14 +10,14 @@ namespace _Source.UI
     {
         [SerializeField] private SceneLoader sceneLoader;
         [Space]
+        
         [SerializeField] private GameObject deadPanel;
         [SerializeField] private Button restartButton;
         [Space] 
+        
         [SerializeField] private GameObject pausedPanel;
-
         [SerializeField] private Button resumeButton;
         [SerializeField] private Button toMainMenuButton;
-
         private void Awake()
         {
             Subscribe();
@@ -23,6 +25,7 @@ namespace _Source.UI
             DisablePaused();
             deadPanel.SetActive(false);
         }
+        
         
         private void BindButton()
         {
@@ -65,6 +68,14 @@ namespace _Source.UI
             Signals.Get<OnDead>().RemoveListener(PrintDead);
         }
         
+        #region Beatiful
+
+        public void PrintInformationRegion(int idRegion)
+        {
+            
+        }
+
+        #endregion
 
         #region Dead
 

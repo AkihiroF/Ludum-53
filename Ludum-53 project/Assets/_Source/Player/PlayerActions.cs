@@ -22,14 +22,18 @@ namespace _Source.Player
             if(CheckIsGrounded())
             {
                 animationController.PlayJump();
+                _rb.velocity = Vector2.zero;
                 _rb.AddForce(Vector2.up * powerForce * 100);
             }
         }
 
         private bool CheckIsGrounded()
         {
-            return Physics2D.OverlapCapsule(transform.position, _sizePlayer,
-                CapsuleDirection2D.Vertical, 0, layerGround);
+            // return Physics2D.OverlapCapsule(transform.position, _sizePlayer,
+            //     CapsuleDirection2D.Vertical, 0, layerGround);
+            RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down,
+                _sizePlayer.x + 0.2f, layerGround);
+            return ray.collider;
         }
         
         public void Dead()
