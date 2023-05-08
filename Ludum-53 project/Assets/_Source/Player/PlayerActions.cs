@@ -21,7 +21,6 @@ namespace _Source.Player
         {
             if(CheckIsGrounded())
             {
-                //Debug.Log("Jump");
                 animationController.PlayJump();
                 _rb.AddForce(Vector2.up * powerForce * 100);
             }
@@ -29,7 +28,8 @@ namespace _Source.Player
 
         private bool CheckIsGrounded()
         {
-            return Physics2D.OverlapCapsule(transform.position, _sizePlayer, CapsuleDirection2D.Vertical, 0, layerGround);
+            return Physics2D.OverlapCapsule(transform.position, _sizePlayer,
+                CapsuleDirection2D.Vertical, 0, layerGround);
         }
         
         public void Dead()
